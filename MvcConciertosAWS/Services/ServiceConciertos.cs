@@ -8,10 +8,9 @@ namespace MvcConciertosAWS.Services
         private string UrlApi;
         private MediaTypeWithQualityHeaderValue header;
 
-        public ServiceConciertos(IConfiguration configuration)
+        public ServiceConciertos(KeysModel keysModel)
         {
-            this.UrlApi = configuration.GetValue<string>
-                ("ApiUrl:ApiConciertosAWS");
+            this.UrlApi = keysModel.ApiConciertos;
             this.header = new MediaTypeWithQualityHeaderValue
                 ("application/json");
         }

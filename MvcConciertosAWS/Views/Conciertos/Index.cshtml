@@ -1,13 +1,9 @@
-﻿@inject IConfiguration configuration
-@{
-    string UrlBucket =
-    configuration.GetValue<string>("AWS:S3BucketUrl");
-}
-
+﻿@inject KeysModel keysModel;
 @model IEnumerable<MvcConciertosAWS.Models.Evento>
 
 @{
     ViewData["Title"] = "Index";
+    string UrlBucket = keysModel.BucketUrl;
 }
 
 <h1>Index</h1>
@@ -33,7 +29,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.imagen)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -53,12 +48,6 @@
             </td>
             <td>
                     <img src="@UrlBucket@item.imagen" style="height:150px;width:100px;" />
-                @Html.DisplayFor(modelItem => item.imagen)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }
